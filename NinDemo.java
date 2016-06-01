@@ -13,8 +13,8 @@ public class NinDemo extends SpaceSmasherProcedureAPI
         initializeLifeSet(6);
         initializePaddleSet(2);
         initializeBallSet(4);
-        initializeBlockSet(); // Calling overloaded function (below)
-        //setLevel(1); // this is a bug
+        initializeBlockSet();
+        //setLevel(1); // this has a bug
     }
 
     public void updateGame(){
@@ -54,6 +54,7 @@ public class NinDemo extends SpaceSmasherProcedureAPI
     }
     
     /**
+     * (Override with same implementation as in API)
      * Overload Rob's function to make it easy to understand and 
      * to show the use of for-loop. There're 3 steps in this function
      */
@@ -77,6 +78,7 @@ public class NinDemo extends SpaceSmasherProcedureAPI
     
     // use specific keys for paddle movement
     /**
+     * (Override with same implementation as in API)
      * Function for paddle movement control. 
      * Use the A and D -keys to move the given paddle
      * @param whichPaddle do you want to use these keys to control
@@ -91,6 +93,7 @@ public class NinDemo extends SpaceSmasherProcedureAPI
     }
     
     /**
+     * (Override with same implementation as in API)
      * Function for paddle movement control
      * Use mouse to control the movement of the given paddle
      * @param whichPaddle do you want to use the mouse to control
@@ -102,6 +105,7 @@ public class NinDemo extends SpaceSmasherProcedureAPI
     }
     
     /**
+     * (Override with same implementation as in API)
      * To spawn a ball from a paddle by using the SPACE key or the 
      * mouse left click
      * @param whichBall do you want to spawn
@@ -116,6 +120,7 @@ public class NinDemo extends SpaceSmasherProcedureAPI
     }
     
     /**
+     * (Override with same implementation as in API)
      * Handle when ball-block and ball-wall collision. This function also
      * check the game is lost by checking if all the lives are used
      * @param handle collision for whichBall
@@ -129,6 +134,7 @@ public class NinDemo extends SpaceSmasherProcedureAPI
     }
     
     /**
+     * (Override with same implementation as in API)
      * Handle when ball hit the paddle.
      * @param handle collision for whichBall and whichPaddle
      */

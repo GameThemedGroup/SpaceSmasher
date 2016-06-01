@@ -1,55 +1,54 @@
 /**
 BALL:
-•	void ballSetToInvisible(int whichBall)
-•	boolean ballGetVisibility(int whichBall)
-•	void ballSetState(PaddleAndBallStatesEnum state, int whichBall)
-•	PaddleAndBallStatesEnum ballGetState(int whichBall)
-•	Ball.BallType toBallState(PaddleAndBallStatesEnum input)
-•	void ballPlayBounceSound()
+--	void ballSetToInvisible(int whichBall)
+--	boolean ballGetVisibility(int whichBall)
+--	void ballSetState(PaddleAndBallStatesEnum state, int whichBall)
+--	PaddleAndBallStatesEnum ballGetState(int whichBall)
+--	Ball.BallType toBallState(PaddleAndBallStatesEnum input)
+--	void ballPlayBounceSound()
 
 PADDLE:
-•	PaddleAndBallStatesEnum paddleGetState(int whichPaddle)
-•	PaddleAndBallStatesEnum paddleStateTranslate(Paddle.PaddleState input)
-•	void paddleSetCenterX(float x, int whichPaddle)
-•	void paddleSetImage(String fileName, int whichPaddle)
-•	void paddleMoveLeft(int whichPaddle)
-•	void paddleMoveRight(int whichPaddle)
+--	PaddleAndBallStatesEnum paddleGetState(int whichPaddle)
+--	PaddleAndBallStatesEnum paddleStateTranslate(Paddle.PaddleState input)
+--	void paddleSetCenterX(float x, int whichPaddle)
+--	void paddleSetImage(String fileName, int whichPaddle)
+--	void paddleMoveLeft(int whichPaddle)
+--	void paddleMoveRight(int whichPaddle)
 
 BLOCK:
-•	boolean areAllBlocksRemoved()
-•	void removeNeighboringBlocks(int row, int col, Block.BlockType type)
+--	boolean areAllBlocksRemoved()
+--	void removeNeighboringBlocks(int row, int col, Block.BlockType type)
 
 WALL:
-•	WallsEnum getCollidedWall(int whichBall)
-•	WallsEnum toWallsEnum(BoundCollidedStatus input)
+--	WallsEnum getCollidedWall(int whichBall)
+--	WallsEnum toWallsEnum(BoundCollidedStatus input)
 
 BALL AND PADDLE:
-•	void ballSpawnNearPaddle(int whichBall, int whichPaddle)
-•	boolean ballCollidedWithPaddle(int whichBall, int whichPaddle)
-•	void ballReflectOffPaddle(int whichBall, int whichPaddle)
+--	void ballSpawnNearPaddle(int whichBall, int whichPaddle)
+--	boolean ballCollidedWithPaddle(int whichBall, int whichPaddle)
+--	void ballReflectOffPaddle(int whichBall, int whichPaddle)
 
 BALL AND WALL:
-•	BoundCollidedStatus getBallAndWallCollisionStatus(int whichBall)
-•	void ballReflectOffTopWall(int whichBall)
-•	void ballReflectOffLeftWall(int whichBall)
-•	void ballReflectOffRightWall(int whichBall)
-•	void ballReflectOffBottomWall(int whichBall)
+--	BoundCollidedStatus getBallAndWallCollisionStatus(int whichBall)
+--	void ballReflectOffTopWall(int whichBall)
+--	void ballReflectOffLeftWall(int whichBall)
+--	void ballReflectOffRightWall(int whichBall)
+--	void ballReflectOffBottomWall(int whichBall)
 
 BALL AND BLOCK:
-•	boolean ballCollidedWithBlock(int whichBall)
-•	void handleBlockBallCollision(int whichBall, int whichPaddle)
+--	boolean ballCollidedWithBlock(int whichBall)
+--	void handleBlockBallCollision(int whichBall, int whichPaddle)
 
 MISCELLANEOUS:
-•	void addToBallSetAndSpawn(Ball ball, int whichPaddle)
-•	void loseALife()
-•	void lostGameCheck()
-•	MOUSE AND KEYBOARD:
-    •	boolean isMouseOnScreen()
-    •	float getMouseXCoordinate()
-    •	float getMouseYCoordinate()
-    •	boolean isKeyboardButtonDown(KeysEnum key)	
-    •	boolean isMouseButtonDown(MouseClicksEnum button)
-
+--	void addToBallSetAndSpawn(Ball ball, int whichPaddle)
+--	void loseALife()
+--	void lostGameCheck()
+--	MOUSE AND KEYBOARD:
+    - boolean isMouseOnScreen()
+    - float getMouseXCoordinate()
+    - float getMouseYCoordinate()
+    - boolean isKeyboardButtonDown(KeysEnum key)	
+    - boolean isMouseButtonDown(MouseClicksEnum button)
 */
 package SpaceSmasherProcedureAPI;
 import static SpaceSmasherProcedureAPI.PaddleAndBallStatesEnum.FIRE;
@@ -107,6 +106,136 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
      * EXTENDED FUNCTION - update the game. Being called in update() function
      */
     public void updateGame(){ }
+    
+    /**
+     * EXTENDED METHOD - Set the number of lives for the game
+     * @param numOfLife the number of lives
+     */
+    public void initializeLifeSet(int numOfLife){
+        lifeSet.add(numOfLife);
+    }
+    
+    /**
+     * EXTENDED METHOD - initialize the ball. Adding the ball to the ball set
+     * to get them ready to spawn
+     * @param numOfBall how many balls to initialize
+     */
+    public void initializeBallSet(int numOfBall){
+        ballSet.add(numOfBall);
+        for(int i = 0; i < numOfBall; i++){
+            ballSet.get(i).setToInvisible();
+        }
+    }
+
+    /**
+     * EXTENDED METHOD - Initialize the paddle
+     * @param numOfPaddle how many paddle to use in the game
+     */
+    public void initializePaddleSet(int numOfPaddle){
+        paddleSet.add(numOfPaddle);
+    }
+    
+    /**
+     * Overload Rob's function to make it easy to understand and 
+     * to show the use of for-loop. There are 3 steps in this function
+     */
+    public void initializeBlockSet(){
+        // STEP1: Set how many blocks per row
+        setBlocksPerRow(7);
+        
+        // STEP2: Add blocks to the row
+        // The total number of blocks you add must be >= to the 
+        // number of blocks you set per row
+        for(int row = 0; row < 3; row++){
+            addBlock("ice", 1);
+            addBlock("Fire", 2);
+            addBlock("Normal", 3);
+            addBlock("fire", 1);
+        }
+        
+        // STEP3: Reveal the block power
+        revealBlockPower();
+    }
+    
+    // These function are for initializing the block set
+    //  Break the initializeBlockSet function into smaller functions
+    /**
+     * EXTENDED METHOD - set how many blocks to have in a row
+     * Note: Must use with addBlock(blockType, numOfBlock) and revealBlockPower()
+     * @param numOfBlock how many blocks should be in a row
+     */
+    public void setBlocksPerRow(int numOfBlock){
+        blockSet.setBlocksPerRow(numOfBlock);
+    }
+    /**
+     * EXTENDED METHOD - Add blocks to the game. There are 3 types of block that
+     * the user can add such as Fire, Ice, or Normal block.
+     * Note: Must use with setBlocksPerRow(numOfBlock) and revealBlockPower()
+     * @param blockType the type of block to add
+     * @param numOfBlock how many block of this type
+     */
+    public void addBlock(String blockType, int numOfBlock){
+        if(blockType.equalsIgnoreCase("fire"))
+            blockSet.addFireBlock(numOfBlock);
+        else if(blockType.equalsIgnoreCase("ice"))
+            blockSet.addFreezingBlock(numOfBlock);
+        else if(blockType.equalsIgnoreCase("normal"))
+            blockSet.addNormalBlock(numOfBlock);
+    }
+    /**
+     * EXTENDED METHOD - Reveal the power of the block
+     * E.g. If the type is Fire, display the block as Fire block 
+     * Note: Must use with setBlocksPerRow(numOfBlock) and addBlock(blockType, numOfBlock)
+     */
+    public void revealBlockPower(){
+        for (int iRow = 0; iRow < blockSet.getNumRows(); iRow++) {
+            for (int iCol = 0; iCol < blockSet.getNumColumns(); iCol++) {
+                Block nextBlock = blockSet.getBlockAt(iRow, iCol);
+                if(nextBlock != null)
+                    nextBlock.revealPower();
+            }
+        }
+    }
+    
+    // use specific keys for paddle movement
+    /**
+     * Function for paddle movement control. 
+     * Use the A and D -keys to move the given paddle
+     * @param whichPaddle do you want to use these keys to control
+     */
+    public void useADForPaddleMovement(int whichPaddle){
+        if(isKeyboardButtonDown(KeysEnum.A) || isKeyboardButtonDown(KeysEnum.a)){
+            paddleMoveLeft(whichPaddle);
+        }
+        if(isKeyboardButtonDown(KeysEnum.D) || isKeyboardButtonDown(KeysEnum.d)){
+            paddleMoveRight(whichPaddle);
+        }
+    }
+    
+    /**
+     * Function for paddle movement control
+     * Use mouse to control the movement of the given paddle
+     * @param whichPaddle do you want to use the mouse to control
+     */
+    public void useMouseForPaddleMovement(int whichPaddle){
+        if(isMouseOnScreen()){
+            paddleSetCenterX(getMouseXCoordinate(), whichPaddle);   
+        }
+    }
+    
+    /**
+     * To spawn a ball from a paddle by using the SPACE key or the 
+     * mouse left click
+     * @param whichBall do you want to spawn
+     * @param whichPaddle do you want to spawn the ball from
+     */
+    public void spawnBall(int whichBall, int whichPaddle){
+        if (isKeyboardButtonDown(KeysEnum.SPACE) || isMouseLeftClicked()) {       
+           if(!ballIsVisible(whichBall)){
+               ballSpawnNearPaddle(whichBall, whichPaddle);
+           }
+         }
+    }
     
     /**
      * EXTENDED FUNCTION - inaddition to the API utility method, ballPlayBounceSound()
@@ -173,33 +302,28 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
         }
     }
     
-    
     /**
-     * EXTENDED METHOD - Set the number of lives for the game
-     * @param numOfLife the number of lives
+     * Handle when ball-block and ball-wall collision. This function also
+     * check the game is lost by checking if all the lives are used
+     * @param handle collision for whichBall
      */
-    public void initializeLifeSet(int numOfLife){
-        lifeSet.add(numOfLife);
-    }
-    
-    /**
-     * EXTENDED METHOD - initialize the ball. Adding the ball to the ball set
-     * to get them ready to spawn
-     * @param numOfBall how many balls to initialize
-     */
-    public void initializeBallSet(int numOfBall){
-        ballSet.add(numOfBall);
-        for(int i = 0; i < numOfBall; i++){
-            ballSet.get(i).setToInvisible();
+    public void handleBlockBallWallCollision(int whichBall){
+        if(ballIsVisible(whichBall)){
+            handleBlockBallCollision(whichBall);
+            ballAndWallCollisionCheck(whichBall);
+            lostGameCheck();
         }
     }
-
+    
     /**
-     * EXTENDED METHOD - Initialize the paddle
-     * @param numOfPaddle how many paddle to use in the game
+     * Handle when ball hit the paddle.
+     * @param handle collision for whichBall and whichPaddle
      */
-    public void initializePaddleSet(int numOfPaddle){
-        paddleSet.add(numOfPaddle);
+    public void handlePaddleBallCollisions(int whichBall, int whichPaddle){
+        if(ballIsVisible(whichBall) && ballCollidedWithPaddle(whichBall, whichPaddle)){
+            ballReflectOffPaddle(whichBall, whichPaddle);
+            ballPlayBounceSound(whichBall);
+        }
     }
     
     /**
@@ -209,43 +333,6 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     protected void addBall(int whichPaddle){
         Ball ball = new Ball();
         addToBallSetAndSpawn(ball, whichPaddle);
-    }
-    
-    // These function are for initializing the block set
-    //  Break the initializeBlockSet function into smaller functions
-    /**
-     * EXTENDED METHOD - set how many blocks to have in a row
-     * @param numOfBlock how many blocks should be in a row
-     */
-    public void setBlocksPerRow(int numOfBlock){
-        blockSet.setBlocksPerRow(numOfBlock);
-    }
-    /**
-     * EXTENDED METHOD - Add blocks to the game. There are 3 types of block that
-     * the user can add such as Fire, Ice, or Normal block.
-     * @param blockType the type of block to add
-     * @param numOfBlock how many block of this type
-     */
-    public void addBlock(String blockType, int numOfBlock){
-        if(blockType.equalsIgnoreCase("fire"))
-            blockSet.addFireBlock(numOfBlock);
-        else if(blockType.equalsIgnoreCase("ice"))
-            blockSet.addFreezingBlock(numOfBlock);
-        else if(blockType.equalsIgnoreCase("normal"))
-            blockSet.addNormalBlock(numOfBlock);
-    }
-    /**
-     * EXTENDED METHOD - Reveal the power of the block
-     * E.g. If the type is Fire, display the block as Fire block 
-     */
-    public void revealBlockPower(){
-        for (int iRow = 0; iRow < blockSet.getNumRows(); iRow++) {
-            for (int iCol = 0; iCol < blockSet.getNumColumns(); iCol++) {
-                Block nextBlock = blockSet.getBlockAt(iRow, iCol);
-                if(nextBlock != null)
-                    nextBlock.revealPower();
-            }
-        }
     }
     
     //*****************************************************************************
@@ -258,6 +345,14 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
      */
     protected void initialize() {
         buildGame();
+    }
+    
+    /**
+     * This method could be overridden to add extra features
+     * Specific to winning the game, paddle checks and ball checks
+     */
+    protected void update() {
+        updateGame();
     }
 
    /**
@@ -279,14 +374,6 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
              }
          }
          return retVal;
-    }
-    
-    /**
-     * This method could be overridden to add extra features
-     * Specific to winning the game, paddle checks and ball checks
-     */
-    protected void update() {
-        updateGame();
     }
     
     /**
