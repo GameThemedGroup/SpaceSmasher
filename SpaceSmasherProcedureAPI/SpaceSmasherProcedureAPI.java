@@ -1,55 +1,55 @@
 /**
-BALL:
---	void ballSetToInvisible(int whichBall)
---	boolean ballGetVisibility(int whichBall)
---	void ballSetState(PaddleAndBallStatesEnum state, int whichBall)
---	PaddleAndBallStatesEnum ballGetState(int whichBall)
---	Ball.BallType toBallState(PaddleAndBallStatesEnum input)
---	void ballPlayBounceSound()
-
-PADDLE:
---	PaddleAndBallStatesEnum paddleGetState(int whichPaddle)
---	PaddleAndBallStatesEnum paddleStateTranslate(Paddle.PaddleState input)
---	void paddleSetCenterX(float x, int whichPaddle)
---	void paddleSetImage(String fileName, int whichPaddle)
---	void paddleMoveLeft(int whichPaddle)
---	void paddleMoveRight(int whichPaddle)
-
-BLOCK:
---	boolean areAllBlocksRemoved()
---	void removeNeighboringBlocks(int row, int col, Block.BlockType type)
-
-WALL:
---	WallsEnum getCollidedWall(int whichBall)
---	WallsEnum toWallsEnum(BoundCollidedStatus input)
-
-BALL AND PADDLE:
---	void ballSpawnNearPaddle(int whichBall, int whichPaddle)
---	boolean ballCollidedWithPaddle(int whichBall, int whichPaddle)
---	void ballReflectOffPaddle(int whichBall, int whichPaddle)
-
-BALL AND WALL:
---	BoundCollidedStatus getBallAndWallCollisionStatus(int whichBall)
---	void ballReflectOffTopWall(int whichBall)
---	void ballReflectOffLeftWall(int whichBall)
---	void ballReflectOffRightWall(int whichBall)
---	void ballReflectOffBottomWall(int whichBall)
-
-BALL AND BLOCK:
---	boolean ballCollidedWithBlock(int whichBall)
---	void handleBlockBallCollision(int whichBall, int whichPaddle)
-
-MISCELLANEOUS:
---	void addToBallSetAndSpawn(Ball ball, int whichPaddle)
---	void loseALife()
---	void lostGameCheck()
---	MOUSE AND KEYBOARD:
-    - boolean isMouseOnScreen()
-    - float getMouseXCoordinate()
-    - float getMouseYCoordinate()
-    - boolean isKeyboardButtonDown(KeysEnum key)	
-    - boolean isMouseButtonDown(MouseClicksEnum button)
-*/
+ * BALL:
+ * --  void ballSetToInvisible(int whichBall)
+ * --  boolean ballGetVisibility(int whichBall)
+ * --  void ballSetState(PaddleAndBallStatesEnum state, int whichBall)
+ * --  PaddleAndBallStatesEnum ballGetState(int whichBall)
+ * --  Ball.BallType toBallState(PaddleAndBallStatesEnum input)
+ * --  void ballPlayBounceSound()
+ * 
+ * PADDLE:
+ * --  PaddleAndBallStatesEnum paddleGetState(int whichPaddle)
+ * --  PaddleAndBallStatesEnum paddleStateTranslate(Paddle.PaddleState input)
+ * --  void paddleSetCenterX(float x, int whichPaddle)
+ * --  void paddleSetImage(String fileName, int whichPaddle)
+ * --  void paddleMoveLeft(int whichPaddle)
+ * --  void paddleMoveRight(int whichPaddle)
+ * 
+ * BLOCK:
+ * --  boolean areAllBlocksRemoved()
+ * --  void removeNeighboringBlocks(int row, int col, Block.BlockType type)
+ * 
+ * WALL:
+ * --  WallsEnum getCollidedWall(int whichBall)
+ * --  WallsEnum toWallsEnum(BoundCollidedStatus input)
+ * 
+ * BALL AND PADDLE:
+ * --  void ballSpawnNearPaddle(int whichBall, int whichPaddle)
+ * --  boolean ballCollidedWithPaddle(int whichBall, int whichPaddle)
+ * --  void ballReflectOffPaddle(int whichBall, int whichPaddle)
+ * 
+ * BALL AND WALL:
+ * --  BoundCollidedStatus getBallAndWallCollisionStatus(int whichBall)
+ * --  void ballReflectOffTopWall(int whichBall)
+ * --  void ballReflectOffLeftWall(int whichBall)
+ * --  void ballReflectOffRightWall(int whichBall)
+ * --  void ballReflectOffBottomWall(int whichBall)
+ * 
+ * BALL AND BLOCK:
+ * --  boolean ballCollidedWithBlock(int whichBall)
+ * --  void handleBlockBallCollision(int whichBall, int whichPaddle)
+ * 
+ * MISCELLANEOUS:
+ * --  void addToBallSetAndSpawn(Ball ball, int whichPaddle)
+ * --  void loseALife()
+ * --  void lostGameCheck()
+ * --  MOUSE AND KEYBOARD:
+ *      - boolean isMouseOnScreen()
+ *      - float getMouseXCoordinate()
+ *      - float getMouseYCoordinate()
+ *      - boolean isKeyboardButtonDown(KeysEnum key)    
+ *      - boolean isMouseButtonDown(MouseClicksEnum button)
+ */
 package SpaceSmasherProcedureAPI;
 import static SpaceSmasherProcedureAPI.PaddleAndBallStatesEnum.FIRE;
 import static SpaceSmasherProcedureAPI.PaddleAndBallStatesEnum.ICE;
@@ -72,20 +72,20 @@ import SpaceSmasherProcedureAPI.WallsEnum.*;
 
 
 /**
- * SpaceSmasherFunctionalAPI
+ * SpaceSmasherProcedureAPI
  *  
  * A functional CS1 wrapper around an Object-Oriented Java game
  * 
  * Important Methods:
  *  
- * -initialize(): used to create a "level" for our 
- * brick-breaking, space smashing game. 
+ * -- buildGame(): used to create a "level" for our brick-breaking, 
+ *    space smashing game. 
  *
- * -update(): where interactivity, responses to collisions, 
- *  ball spawning, and other game logic will go. 
+ * -- updateGame(): where interactivity, responses to collisions, 
+ *    ball spawning, and other game logic will go. 
  * 
  * 
- * Authors: Kelvin Sung, Mike Panitz, Rob Nash
+ * Authors: Kelvin Sung, Mike Panitz, Rob Nash, Vuochly Ky (Nin)
  */
 public class SpaceSmasherProcedureAPI extends SpaceSmasher {   
     
@@ -98,17 +98,18 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
         KeyEvent.VK_A,KeyEvent.VK_B,KeyEvent.VK_C,KeyEvent.VK_D,KeyEvent.VK_E,KeyEvent.VK_F,KeyEvent.VK_G,KeyEvent.VK_H,KeyEvent.VK_I,KeyEvent.VK_J,KeyEvent.VK_K,KeyEvent.VK_L,KeyEvent.VK_M,KeyEvent.VK_N,KeyEvent.VK_O,KeyEvent.VK_P,KeyEvent.VK_Q,KeyEvent.VK_R,KeyEvent.VK_S,KeyEvent.VK_T,KeyEvent.VK_U,KeyEvent.VK_V,KeyEvent.VK_W,KeyEvent.VK_X,KeyEvent.VK_Y,KeyEvent.VK_Z};
         
     /**
-     * EXTENDED FUNCTION - initialize the game. Being called in initialize() function
+     * PROCEDURE API - Being called in initialize() function
+     * Initialize the game. To be overriden to add extra features.
      */
     public void buildGame(){ }
     
     /**
-     * EXTENDED FUNCTION - update the game. Being called in update() function
+     * PROCEDURE API - update the game. Being called in update() function
      */
     public void updateGame(){ }
     
     /**
-     * EXTENDED METHOD - Set the number of lives for the game
+     * PROCEDURE API - Set the number of lives for the game
      * @param numOfLife the number of lives
      */
     public void initializeLifeSet(int numOfLife){
@@ -116,19 +117,19 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * EXTENDED METHOD - initialize the ball. Adding the ball to the ball set
+     * PROCEDURE API - initialize the ball. Adding the ball to the ball set
      * to get them ready to spawn
      * @param numOfBall how many balls to initialize
      */
     public void initializeBallSet(int numOfBall){
         ballSet.add(numOfBall);
         for(int i = 0; i < numOfBall; i++){
-            ballSet.get(i).setToInvisible();
+            ballSetToInvisible(i);
         }
     }
 
     /**
-     * EXTENDED METHOD - Initialize the paddle
+     * PROCEDURE API - Initialize the paddle
      * @param numOfPaddle how many paddle to use in the game
      */
     public void initializePaddleSet(int numOfPaddle){
@@ -136,7 +137,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * Overload Rob's function to make it easy to understand and 
+     * PROCEDURE API - Overload Rob's function to make it easy to understand and 
      * to show the use of for-loop. There are 3 steps in this function
      */
     public void initializeBlockSet(){
@@ -160,7 +161,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     // These function are for initializing the block set
     //  Break the initializeBlockSet function into smaller functions
     /**
-     * EXTENDED METHOD - set how many blocks to have in a row
+     * PROCEDURE API - set how many blocks to have in a row
      * Note: Must use with addBlock(blockType, numOfBlock) and revealBlockPower()
      * @param numOfBlock how many blocks should be in a row
      */
@@ -168,7 +169,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
         blockSet.setBlocksPerRow(numOfBlock);
     }
     /**
-     * EXTENDED METHOD - Add blocks to the game. There are 3 types of block that
+     * PROCEDURE API - Add blocks to the game. There are 3 types of block that
      * the user can add such as Fire, Ice, or Normal block.
      * Note: Must use with setBlocksPerRow(numOfBlock) and revealBlockPower()
      * @param blockType the type of block to add
@@ -183,7 +184,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
             blockSet.addNormalBlock(numOfBlock);
     }
     /**
-     * EXTENDED METHOD - Reveal the power of the block
+     * PROCEDURE API - Reveal the power of the block
      * E.g. If the type is Fire, display the block as Fire block 
      * Note: Must use with setBlocksPerRow(numOfBlock) and addBlock(blockType, numOfBlock)
      */
@@ -199,7 +200,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     
     // use specific keys for paddle movement
     /**
-     * Function for paddle movement control. 
+     * PROCEDURE API - Function for paddle movement control. 
      * Use the A and D -keys to move the given paddle
      * @param whichPaddle do you want to use these keys to control
      */
@@ -213,7 +214,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * Function for paddle movement control
+     * PROCEDURE API - Function for paddle movement control
      * Use mouse to control the movement of the given paddle
      * @param whichPaddle do you want to use the mouse to control
      */
@@ -224,7 +225,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * To spawn a ball from a paddle by using the SPACE key or the 
+     * PROCEDURE API - To spawn a ball from a paddle by using the SPACE key or the 
      * mouse left click
      * @param whichBall do you want to spawn
      * @param whichPaddle do you want to spawn the ball from
@@ -238,7 +239,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * EXTENDED FUNCTION - inaddition to the API utility method, ballPlayBounceSound()
+     * PROCEDURE API - inaddition to the API utility method, ballPlayBounceSound()
      * @param whichBall ball to play the sound for
      */
     public void ballPlayBounceSound(int whichBall) {
@@ -246,7 +247,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * EXTENDED FUNCTION - Check if the given ball is visible.
+     * PROCEDURE API - Check if the given ball is visible.
      * @param whichBall the ball to check
      * @return True if the ball is visible, false otherwise
      */
@@ -256,7 +257,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * EXTENDED FUNCTION - Check if user pressed on the left button of the mouse
+     * PROCEDURE API - Check if user pressed on the left button of the mouse
      * @return True if the mouse left button is pressed, False otherwise
      */
     public boolean isMouseLeftClicked(){
@@ -264,7 +265,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * EXTENDED METHOD - remove only the block that is hit by the ball
+     * PROCEDURE API - remove only the block that is hit by the ball
      * @param whichBall the ball to handle for
      */
     protected void handleBlockBallCollision(int whichBall){
@@ -272,15 +273,14 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
             Ball ball = ballSet.get(whichBall);
             Block block = blockSet.getCollidedBlock(ball);
             block.reflect(ball);
-            ball.playBounceSound();
-            //Block.BlockType blockType = block.getType();
+            ballPlayBounceSound(whichBall);
             blockSet.remove(block);
             increaseScore(1);   // Update the score}
         }
    }
     
     /**
-     * EXTENDED METHOD - Handle when the given ball hit the wall
+     * PROCEDURE API - Handle when the given ball hit the wall
      * @param whichBall ball to check the collision for
      */
     protected void ballAndWallCollisionCheck(int whichBall) {
@@ -303,7 +303,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * Handle when ball-block and ball-wall collision. This function also
+     * PROCEDURE API - Handle when ball-block and ball-wall collision. This function also
      * check the game is lost by checking if all the lives are used
      * @param handle collision for whichBall
      */
@@ -316,7 +316,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * Handle when ball hit the paddle.
+     * PROCEDURE API - Handle when ball hit the paddle.
      * @param handle collision for whichBall and whichPaddle
      */
     public void handlePaddleBallCollisions(int whichBall, int whichPaddle){
@@ -327,7 +327,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * EXTENDED METHOD - Method to add a ball to the ballSet and Spawn on the screen
+     * PROCEDURE API - Method to add a ball to the ballSet and Spawn on the screen
      * @param whichPaddle which paddle to add the ball to
      */
     protected void addBall(int whichPaddle){
@@ -396,7 +396,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * 
+     * Create a new ball
      * @return Ball - the newly created ball for you to use
      */
     protected Ball createNewBall() {
@@ -404,13 +404,16 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
+     * API utility method
+     * Check if the (first) ball in the ballSet collided with any block
      * @return true if the first ball in the ballSet collided with any block
      */
     protected boolean ballCollidedWithBlock() {
         return ballCollidedWithBlock(0);
     }
     /**
-     * 
+     * API utility method
+     * Check if the given ball collided with any block
      * @param whichBall - an integer index to specify which ball out of all balls in the ballSet
      * @return true if the ball specified by the parameter collided with any block
      */
@@ -428,40 +431,46 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
  
     /**
-     * API utility method - Bounce first ball in the ballSet off the top wall
+     * API utility method
+     * Bounce first ball in the ballSet off the top wall
      */
     public void ballReflectOffTopWall() {
         ballReflectOffTopWall(0);
     }
     
     /**
-     * API utility method - Bounce given ball in the ballSet off the top wall
+     * API utility method
+     * Bounce given ball in the ballSet off the top wall
      * @param whichBall - the index used to select the ball to use out of the ballSet
      */
     public void ballReflectOffTopWall(int whichBall) {
         ballSet.get(whichBall).reflectTop();;
     }
     /**
-     * API utility method - Bounce first ball in the ballSet off the left wall
+     * API utility method
+     * Bounce first ball in the ballSet off the left wall
      */
     public void ballReflectOffLeftWall() {
         ballReflectOffLeftWall(0);
     }
     /**
-     * API utility method - Bounce given ball in the ballSet off the left wall
+     * API utility method
+     * Bounce given ball in the ballSet off the left wall
      * @param whichBall - the index used to select the ball to use out of the ballSet
      */
     public void ballReflectOffLeftWall(int whichBall) {
         ballSet.get(whichBall).reflectLeft();
     }
     /**
-     * API utility method - Bounce first ball in the ball set off the right wall
+     * API utility method
+     * Bounce first ball in the ball set off the right wall
      */
     public void ballReflectOffRightWall() {
         ballReflectOffRightWall(0);
     }
     /**
-     * API utility method - Bounce given ball in the ballSet off the right wall
+     * API utility method
+     * Bounce given ball in the ballSet off the right wall
      * @param whichBall - the index used to select the ball to use out of the ballSet
      */
     public void ballReflectOffRightWall(int whichBall) {
@@ -469,13 +478,15 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * API utility method - Bounce first ball in the ballSet off the right wall
+     * API utility method
+     * Bounce first ball in the ballSet off the right wall
      */
     public void ballReflectOffBottomWall() {
         ballReflectOffBottomWall(0);
     }
     /**
-     * API utility method - Bounce given ball in the ballSet off the right wall
+     * API utility method
+     * Bounce given ball in the ballSet off the right wall
      * @param whichBall - the index used to select the ball to use out of the ballSet
      */
     public void ballReflectOffBottomWall(int whichBall) {
@@ -484,12 +495,14 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     
     /**
      * API utility method
+     * Set the (first) ball in the ballSet to invisible
      */
     protected void ballSetToInvisible() {
          ballSetToInvisible(0);
     }
     /**
      * API utility method
+     * Set the given ball to invisible
      * @param whichBall - the index used to select the ball to use out of the ballSet
      */
     protected void ballSetToInvisible(int whichBall) {
@@ -497,6 +510,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     /**
      * API utility method
+     * Set the (first) ball in the ballSet to the given state
      * @param state - the state you want the ball to be set to
      */
     public void ballSetState(PaddleAndBallStatesEnum state){
@@ -504,6 +518,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     /**
      * API utility method
+     * Set the given ball to the given state
      * @param state - the state you want the ball to be set to
      * @param whichBall - the index used to select the ball to use out of the ballSet
      */
@@ -513,6 +528,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
   
     /**
      * API utility method
+     * Get the state of the (first) ball in the ballSet
      * @return - the state of the first ball in the ballSet
      */
     public PaddleAndBallStatesEnum ballGetState() {
@@ -520,6 +536,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     /**
      * API utility method
+     * Get the state of the given ball
      * @param whichBall - the index used to select the ball to use out of the ballSet
      * @return - the state of the ball for use with the Space Smasher CS1 Functional API
      */
@@ -533,6 +550,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     /**
      * API utility method
+     * Get the state of the (first) paddle in the paddleSet
      * @return - the state of the first paddle in the paddleSet
      */
     public PaddleAndBallStatesEnum paddleGetState() { 
@@ -540,6 +558,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     /**
      * API utility method
+     * Get the state of the given paddle
      * @param whichPaddle - the index used to select the paddle to use out of the paddleSet
      * @return - the state of the paddle specified by the parameter, for use with the mid-level Space Smasher CS1 Functional API
      */
@@ -575,6 +594,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     
     /**
      * API utility method
+     * Get the collision status of the given ball
      * @param whichBall - the index used to select the ball to use out of the ballSet
      * @return - the status of the ball for use with the top-level Space Smasher API
      */
@@ -583,6 +603,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     /**
      * API utility method 
+     * Get the collision status with respect to the walls for the first ball in the ballSet
      * @return - the collision status with respect to walls for the first ball in the ballSet
      */
     protected BoundCollidedStatus getBallAndWallCollisionStatus() {
@@ -590,6 +611,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     /**
      * API utility method
+     * Get the wall that collided with the first ball in the ballSet
      * @return - the wall that collided with the first ball in the ballSet
      */
     protected WallsEnum getCollidedWall() {
@@ -598,6 +620,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     
     /**
      * API utility method
+     * Get the wall that collided with the given ball
      * @param whichBall - the index used to select the ball to use out of the ballSet
      * @return - the wall that was collided with, for use with the mid-level Space Smasher CS1 Functional API
      */
@@ -623,6 +646,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     
     /**
      * API utility method
+     * Remove a life from the lifeSet
      */
     protected void loseALife() {
         lifeSet.remove();
@@ -630,6 +654,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     
     /**
      * API utility method
+     * Check if the game is lost
      */
     protected void lostGameCheck() {
         if(lifeSet.getCount() == 0)
@@ -638,6 +663,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     
     /**
      * API utility method
+     * Check if the mouse is attached to the computer and usable in the game
      * @return - true if the mouse is attached to the computer and usable in our game
      */
     protected boolean isMouseOnScreen() {
@@ -645,6 +671,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     /**
      * API utility method
+     * Get the x position of the mouse cursor
      * @return - the x position of the mouse cursor
      */
     protected float getMouseXCoordinate() {
@@ -652,6 +679,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     /**
      * API utility method
+     * Get the y position of the mouse cursor
      * @return - the y position of the mouse cursor
      */
     protected float getMouseYCoordinate() {
@@ -678,6 +706,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
   
     /**
      * API utility method
+     * Check if the first ball in the ballSet collided with the first paddle in the paddleSet
      * @return - true if the first ball in the ballSet collided with the first paddle in the paddleSet
      */
     public boolean ballCollidedWithPaddle() {  //ROB!! Reuse the below pattern for facade redirect and flexibility!!
@@ -686,6 +715,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     
     /**
      * API utility method
+     * Check if the given ball collided with the given paddle
      * @param whichBall - an index to select the ball to use out of the ballSet
      * @param whichPaddle - an index to select the paddle to use out of the paddleSet
      * @return - true if the ball specified collided with the paddle specified
@@ -704,6 +734,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     
     /**
      * API utility method
+     * Reflects the given ball off the given paddle
      * @param whichBall - an index to select the ball to use out of the ballSet
      * @param whichPaddle - an index to select the paddle to use out of the paddleSet
      */
@@ -712,12 +743,14 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     /**
      * API utility method
+     * Play the bouncing sound
      */
     public void ballPlayBounceSound() {
         ballSet.get(0).playBounceSound();
     }
     /**
      * API utility method
+     * Check if the first ball in the ballSet is visible or not
      * @return - true if the first ball in the ballSet is visible
      */
     public boolean ballGetVisibility() {
@@ -725,6 +758,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     /**
      * API utility method
+     * Check if the given ball is visible or not
      * @param whichBall - the index used to select the ball to use out of the ballSet
      * @return - true if the ball specified is visible
      */
@@ -734,6 +768,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     
     /**
      * API utility method
+     * Spawn the given ball near the given paddle
      * @param whichBall - an index to select the ball to use out of the ballSet
      * @param whichPaddle - an index to select the paddle to use out of the paddleSet
      */
@@ -750,6 +785,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     
     /**
      * API utility method
+     * Set the given image to the first paddle in the paddle set
      * @param fileName - the name of the image to set the paddle to, prefixed with "paddles/", as in "paddles/P2.png" 
      */
     public void paddleSetImage(String fileName) {
@@ -757,6 +793,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     /**
      * API utility method
+     * Set the given image to the given paddle
      * @param fileName - the name of the image to set the paddle to, prefixed with "paddles/", as in "paddles/P2.png" 
      * @param whichPaddle - the index of the paddle to select out of the paddleSet
      */
@@ -766,6 +803,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
 
     /**
      * API utility method
+     * Check if the key we're investigating is currenly being pressed
      * @param key - the key we're investigating
      * @return - true if the key we're investigating is currently being pressed
      */
@@ -776,12 +814,14 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     
     /**
      * API utility method
+     * Move the first paddle in the paddleSet to the left
      */
     public void paddleMoveLeft() {
         paddleMoveLeft(0);
     }
     /**
      * API utility method
+     * Move the given paddle to the left
      * @param whichPaddle - the index used to select the paddle to use out of the paddleSet
      */
     public void paddleMoveLeft(int whichPaddle) {  //nomenclature: paddle.moveLeft()
@@ -791,12 +831,14 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     
     /**
      * API utility method
+     * Move the first paddle in the paddleSet to the right
      */
     public void paddleMoveRight() {
         paddleMoveRight(0);
     }
     /**
      * API utility method
+     * Move the given paddle to the right
      * @param whichPaddle - the index used to select the paddle to use out of the paddleSet
      */
     public void paddleMoveRight(int whichPaddle) {  //nomenclature: paddle.moveLeft()
