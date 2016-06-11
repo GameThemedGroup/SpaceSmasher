@@ -1,4 +1,15 @@
 /**
+ * NEED TO BE FIXED!
+ * NOTE: The setLevel(int level) function has a bug. When setLevel() 
+ * called, it displays Score instead. 
+ * E.g. setLevel(1) =>  Score: 1 (on the game window)
+ */
+
+/**
+ * ***********************************************
+ * **** LIST OF ALL FUNCTIONAL API FUNCTIONS *****
+ * **** ******************************************
+ * 
  * BALL:
  * --  void ballSetToInvisible(int whichBall)
  * --  boolean ballGetVisibility(int whichBall)
@@ -86,6 +97,8 @@ import SpaceSmasherProcedureAPI.WallsEnum.*;
  * 
  * 
  * Authors: Kelvin Sung, Mike Panitz, Rob Nash, Vuochly Ky (Nin)
+ * 
+ * 
  */
 public class SpaceSmasherProcedureAPI extends SpaceSmasher {   
     
@@ -158,7 +171,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
         revealBlockPower();
     }
     
-    // These function are for initializing the block set
+    // These function are for initializing the block set.
     //  Break the initializeBlockSet function into smaller functions
     /**
      * PROCEDURE API - set how many blocks to have in a row
@@ -239,7 +252,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * PROCEDURE API - inaddition to the API utility method, ballPlayBounceSound()
+     * PROCEDURE API - in addition to the API utility method, ballPlayBounceSound()
      * @param whichBall ball to play the sound for
      */
     public void ballPlayBounceSound(int whichBall) {
