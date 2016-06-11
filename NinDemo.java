@@ -1,5 +1,5 @@
-import SpaceSmasherProcedureAPI.*;
-import static SpaceSmasherProcedureAPI.KeysEnum.*;
+import SpaceSmasherProceduralAPI.*;
+import static SpaceSmasherProceduralAPI.KeysEnum.*;
 
 /**
  * Write a description of class NinTodo here.
@@ -7,7 +7,7 @@ import static SpaceSmasherProcedureAPI.KeysEnum.*;
  * @author Vuochly Ky (Nin)
  * @version 4/16/16
  */
-public class NinDemo extends SpaceSmasherProcedureAPI
+public class NinDemo extends SpaceSmasherProceduralAPI
 {
     public void buildGame(){
         initializeLifeSet(6);
@@ -57,6 +57,12 @@ public class NinDemo extends SpaceSmasherProcedureAPI
      * (Override with same implementation as in API)
      * Overload Rob's function to make it easy to understand and 
      * to show the use of for-loop. There're 3 steps in this function
+     * 
+     * This function creates:
+     * 7 blocks per row
+     * Each row has the order of:
+     *      1 ICE block, 2 FIRE blocks, 3 NORMAL blocks, 1 FIRE block
+     *      (1 + 2 + 3 + 1 = 7 blocks)
      */
     public void initializeBlockSet(){
         // STEP1: Set how many blocks per row
@@ -64,7 +70,7 @@ public class NinDemo extends SpaceSmasherProcedureAPI
         
         // STEP2: Add blocks to the row
         // The total number of blocks you add must be >= to the 
-        // number of blocks you set per row
+        // number of blocks you set per row (Refer to the function comment)
         for(int row = 0; row < 3; row++){
             addBlock("ice", 1);
             addBlock("Fire", 2);

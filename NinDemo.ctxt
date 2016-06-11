@@ -5,7 +5,7 @@ comment1.params=
 comment1.target=void\ updateGame()
 comment2.params=
 comment2.target=void\ initializeBlockSet()
-comment2.text=\r\n\ (Override\ with\ same\ implementation\ as\ in\ API)\r\n\ Overload\ Rob's\ function\ to\ make\ it\ easy\ to\ understand\ and\ \r\n\ to\ show\ the\ use\ of\ for-loop.\ There're\ 3\ steps\ in\ this\ function\r\n
+comment2.text=\r\n\ (Override\ with\ same\ implementation\ as\ in\ API)\r\n\ Overload\ Rob's\ function\ to\ make\ it\ easy\ to\ understand\ and\ \r\n\ to\ show\ the\ use\ of\ for-loop.\ There're\ 3\ steps\ in\ this\ function\r\n\ \r\n\ This\ function\ creates\:\r\n\ 7\ blocks\ per\ row\r\n\ Each\ row\ has\ the\ order\ of\:\r\n\ \ \ \ \ \ 1\ ICE\ block,\ 2\ FIRE\ blocks,\ 3\ NORMAL\ blocks,\ 1\ FIRE\ block\r\n\ \ \ \ \ \ (1\ +\ 2\ +\ 3\ +\ 1\ \=\ 7\ blocks)\r\n
 comment3.params=whichPaddle
 comment3.target=void\ useADForPaddleMovement(int)
 comment3.text=\r\n\ (Override\ with\ same\ implementation\ as\ in\ API)\r\n\ Function\ for\ paddle\ movement\ control.\ \r\n\ Use\ the\ A\ and\ D\ -keys\ to\ move\ the\ given\ paddle\r\n\ @param\ whichPaddle\ do\ you\ want\ to\ use\ these\ keys\ to\ control\r\n

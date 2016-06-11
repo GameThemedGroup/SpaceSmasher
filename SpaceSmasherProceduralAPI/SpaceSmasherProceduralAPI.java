@@ -1,8 +1,8 @@
 /**
  * NEED TO BE FIXED!
  * NOTE: The setLevel(int level) function has a bug. When setLevel() 
- * called, it displays Score instead. 
- * E.g. setLevel(1) =>  Score: 1 (on the game window)
+ * called, it displays 'Score: _' instead of 'Level _' 
+ * E.g. setLevel(x) =>  Score: x (on the game window)
  */
 
 /**
@@ -61,11 +61,11 @@
  *      - boolean isKeyboardButtonDown(KeysEnum key)    
  *      - boolean isMouseButtonDown(MouseClicksEnum button)
  */
-package SpaceSmasherProcedureAPI;
-import static SpaceSmasherProcedureAPI.PaddleAndBallStatesEnum.FIRE;
-import static SpaceSmasherProcedureAPI.PaddleAndBallStatesEnum.ICE;
-import static SpaceSmasherProcedureAPI.PaddleAndBallStatesEnum.NORMAL;
-import static SpaceSmasherProcedureAPI.WallsEnum.*;
+package SpaceSmasherProceduralAPI;
+import static SpaceSmasherProceduralAPI.PaddleAndBallStatesEnum.FIRE;
+import static SpaceSmasherProceduralAPI.PaddleAndBallStatesEnum.ICE;
+import static SpaceSmasherProceduralAPI.PaddleAndBallStatesEnum.NORMAL;
+import static SpaceSmasherProceduralAPI.WallsEnum.*;
 import java.awt.event.KeyEvent;
 import SpaceSmasher.Ball;
 import SpaceSmasher.Block;
@@ -79,11 +79,11 @@ import Engine.GameWindow;
 import Engine.Vector2;
 import Engine.World;
 import Engine.World.BoundCollidedStatus;
-import SpaceSmasherProcedureAPI.WallsEnum.*;
+import SpaceSmasherProceduralAPI.WallsEnum.*;
 
 
 /**
- * SpaceSmasherProcedureAPI
+ * SpaceSmasherProceduralAPI
  *  
  * A functional CS1 wrapper around an Object-Oriented Java game
  * 
@@ -100,7 +100,7 @@ import SpaceSmasherProcedureAPI.WallsEnum.*;
  * 
  * 
  */
-public class SpaceSmasherProcedureAPI extends SpaceSmasher {   
+public class SpaceSmasherProceduralAPI extends SpaceSmasher {   
     
     /**
      * Used in the wrapper API function isKeyboardButtonDown, this array maps a shorter abbreviation like RIGHT to the virtual key event KeyEvent.VK_RIGHT
@@ -111,18 +111,18 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
         KeyEvent.VK_A,KeyEvent.VK_B,KeyEvent.VK_C,KeyEvent.VK_D,KeyEvent.VK_E,KeyEvent.VK_F,KeyEvent.VK_G,KeyEvent.VK_H,KeyEvent.VK_I,KeyEvent.VK_J,KeyEvent.VK_K,KeyEvent.VK_L,KeyEvent.VK_M,KeyEvent.VK_N,KeyEvent.VK_O,KeyEvent.VK_P,KeyEvent.VK_Q,KeyEvent.VK_R,KeyEvent.VK_S,KeyEvent.VK_T,KeyEvent.VK_U,KeyEvent.VK_V,KeyEvent.VK_W,KeyEvent.VK_X,KeyEvent.VK_Y,KeyEvent.VK_Z};
         
     /**
-     * PROCEDURE API - Being called in initialize() function
+     * PROCEDURAL API - Being called in initialize() function
      * Initialize the game. To be overriden to add extra features.
      */
     public void buildGame(){ }
     
     /**
-     * PROCEDURE API - update the game. Being called in update() function
+     * PROCEDURAL API - update the game. Being called in update() function
      */
     public void updateGame(){ }
     
     /**
-     * PROCEDURE API - Set the number of lives for the game
+     * PROCEDURAL API - Set the number of lives for the game
      * @param numOfLife the number of lives
      */
     public void initializeLifeSet(int numOfLife){
@@ -130,7 +130,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * PROCEDURE API - initialize the ball. Adding the ball to the ball set
+     * PROCEDURAL API - initialize the ball. Adding the ball to the ball set
      * to get them ready to spawn
      * @param numOfBall how many balls to initialize
      */
@@ -142,7 +142,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
 
     /**
-     * PROCEDURE API - Initialize the paddle
+     * PROCEDURAL API - Initialize the paddle
      * @param numOfPaddle how many paddle to use in the game
      */
     public void initializePaddleSet(int numOfPaddle){
@@ -150,8 +150,14 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * PROCEDURE API - Overload Rob's function to make it easy to understand and 
-     * to show the use of for-loop. There are 3 steps in this function
+     * PROCEDURAL API - Overload Rob's function to make it easy to understand and 
+     * to show the use of for-loop. There are 3 steps in this function.
+     * 
+     * This function creates:
+     * 7 blocks per row
+     * Each row has the order of:
+     *      1 ICE block, 2 FIRE blocks, 3 NORMAL blocks, 1 FIRE block
+     *      (1 + 2 + 3 + 1 = 7 blocks)
      */
     public void initializeBlockSet(){
         // STEP1: Set how many blocks per row
@@ -159,7 +165,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
         
         // STEP2: Add blocks to the row
         // The total number of blocks you add must be >= to the 
-        // number of blocks you set per row
+        // number of blocks you set per row (Refer to the function comment)
         for(int row = 0; row < 3; row++){
             addBlock("ice", 1);
             addBlock("Fire", 2);
@@ -174,7 +180,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     // These function are for initializing the block set.
     //  Break the initializeBlockSet function into smaller functions
     /**
-     * PROCEDURE API - set how many blocks to have in a row
+     * PROCEDURAL API - set how many blocks to have in a row
      * Note: Must use with addBlock(blockType, numOfBlock) and revealBlockPower()
      * @param numOfBlock how many blocks should be in a row
      */
@@ -182,7 +188,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
         blockSet.setBlocksPerRow(numOfBlock);
     }
     /**
-     * PROCEDURE API - Add blocks to the game. There are 3 types of block that
+     * PROCEDURAL API - Add blocks to the game. There are 3 types of block that
      * the user can add such as Fire, Ice, or Normal block.
      * Note: Must use with setBlocksPerRow(numOfBlock) and revealBlockPower()
      * @param blockType the type of block to add
@@ -197,7 +203,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
             blockSet.addNormalBlock(numOfBlock);
     }
     /**
-     * PROCEDURE API - Reveal the power of the block
+     * PROCEDURAL API - Reveal the power of the block
      * E.g. If the type is Fire, display the block as Fire block 
      * Note: Must use with setBlocksPerRow(numOfBlock) and addBlock(blockType, numOfBlock)
      */
@@ -213,7 +219,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     
     // use specific keys for paddle movement
     /**
-     * PROCEDURE API - Function for paddle movement control. 
+     * PROCEDURAL API - Function for paddle movement control. 
      * Use the A and D -keys to move the given paddle
      * @param whichPaddle do you want to use these keys to control
      */
@@ -227,7 +233,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * PROCEDURE API - Function for paddle movement control
+     * PROCEDURAL API - Function for paddle movement control
      * Use mouse to control the movement of the given paddle
      * @param whichPaddle do you want to use the mouse to control
      */
@@ -238,7 +244,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * PROCEDURE API - To spawn a ball from a paddle by using the SPACE key or the 
+     * PROCEDURAL API - To spawn a ball from a paddle by using the SPACE key or the 
      * mouse left click
      * @param whichBall do you want to spawn
      * @param whichPaddle do you want to spawn the ball from
@@ -252,7 +258,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * PROCEDURE API - in addition to the API utility method, ballPlayBounceSound()
+     * PROCEDURAL API - in addition to the API utility method, ballPlayBounceSound()
      * @param whichBall ball to play the sound for
      */
     public void ballPlayBounceSound(int whichBall) {
@@ -260,7 +266,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * PROCEDURE API - Check if the given ball is visible.
+     * PROCEDURAL API - Check if the given ball is visible.
      * @param whichBall the ball to check
      * @return True if the ball is visible, false otherwise
      */
@@ -270,7 +276,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * PROCEDURE API - Check if user pressed on the left button of the mouse
+     * PROCEDURAL API - Check if user pressed on the left button of the mouse
      * @return True if the mouse left button is pressed, False otherwise
      */
     public boolean isMouseLeftClicked(){
@@ -278,7 +284,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * PROCEDURE API - remove only the block that is hit by the ball
+     * PROCEDURAL API - remove only the block that is hit by the ball
      * @param whichBall the ball to handle for
      */
     protected void handleBlockBallCollision(int whichBall){
@@ -293,7 +299,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
    }
     
     /**
-     * PROCEDURE API - Handle when the given ball hit the wall
+     * PROCEDURAL API - Handle when the given ball hit the wall
      * @param whichBall ball to check the collision for
      */
     protected void ballAndWallCollisionCheck(int whichBall) {
@@ -316,7 +322,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * PROCEDURE API - Handle when ball-block and ball-wall collision. This function also
+     * PROCEDURAL API - Handle when ball-block and ball-wall collision. This function also
      * check the game is lost by checking if all the lives are used
      * @param handle collision for whichBall
      */
@@ -329,7 +335,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * PROCEDURE API - Handle when ball hit the paddle.
+     * PROCEDURAL API - Handle when ball hit the paddle.
      * @param handle collision for whichBall and whichPaddle
      */
     public void handlePaddleBallCollisions(int whichBall, int whichPaddle){
@@ -340,7 +346,7 @@ public class SpaceSmasherProcedureAPI extends SpaceSmasher {
     }
     
     /**
-     * PROCEDURE API - Method to add a ball to the ballSet and Spawn on the screen
+     * PROCEDURAL API - Method to add a ball to the ballSet and Spawn on the screen
      * @param whichPaddle which paddle to add the ball to
      */
     protected void addBall(int whichPaddle){
