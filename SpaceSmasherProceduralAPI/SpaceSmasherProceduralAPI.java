@@ -217,6 +217,16 @@ public class SpaceSmasherProceduralAPI extends SpaceSmasher {
         }
     }
     
+    /**
+     * PROCEDURAL API - Clear the blocks in the block set
+     * Required if the user wishes to add a new set of blocks. For example, if they are 
+     * transitioning to a new level. 
+     */
+    public void clearBlockSet()
+    {
+        blockSet.clear();
+    }
+    
     // use specific keys for paddle movement
     /**
      * PROCEDURAL API - Function for paddle movement control. 

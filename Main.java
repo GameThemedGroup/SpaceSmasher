@@ -22,7 +22,8 @@ public class Main extends GameWindow
        * comment and uncomment TODOs as you work on them, leaving only one active at a time
        */
 	  
-      setRunner(new NinDemo());
+      //setRunner(new NinDemo());
+      setRunner(new LevelDemo());
 	  //setRunner(new TODO0());
 	  //setRunner(new TODO1());
 	  //setRunner(new TODO2());
