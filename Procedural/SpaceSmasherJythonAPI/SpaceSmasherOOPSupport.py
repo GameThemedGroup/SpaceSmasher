@@ -1,8 +1,8 @@
 from Engine import GameWindow as _GameWindow
 from SpaceSmasher import SpaceSmasher
-from SpaceSmasherProcedureAPI import *
+from SpaceSmasherProceduralAPI import *
 
-class CustomSpaceMaker(SpaceSmasherProcedureAPI):
+class CustomSpaceMaker(SpaceSmasherProceduralAPI):
     # Here we have methods/functions to be called (these are actually just references).
     doBuildGame = None
     doUpdateGame = None
